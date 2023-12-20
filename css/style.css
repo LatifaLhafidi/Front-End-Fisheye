@@ -71,6 +71,7 @@ h1 {
 }
 /* css pour les media pictures*/
 .afficherMedias {
+    padding-top: 60px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -83,10 +84,12 @@ h1 {
     flex-wrap: wrap;
     width: 33%;
 }
-.afficherMedias article img{
-    width: 30rem;
-    height: 30rem;
+.afficherMedias article img ,video{
+    width: 350px;
+    height: 351px;
     margin: auto;
     object-fit: cover;
     object-position: top;
+  
+    
 }

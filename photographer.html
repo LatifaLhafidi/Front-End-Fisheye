@@ -14,7 +14,7 @@
     <header>
       <img src="assets/images/logo.png" class="logo" />
     </header>
-    <main id="main"  aria-hidden="false">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">
           Contactez-moi
@@ -22,31 +22,85 @@
       </div>
       <div class="afficherMedias"></div>
     </main>
-    <div id="contact_modal" role="dialog" aria-hidden="false" aria-describedby="modalTitle">
-      <div class="modal" >
+    <div
+      id="contact_modal"
+      role="dialog"
+      aria-hidden="false"
+      aria-describedby="modalTitle"
+    >
+      <div class="modal">
         <header>
           <h2 id="modalTitle" class="modalTitle">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+
+          <!-- <button
+            type="button"
+            class="fermer"
+            aria-label="Fermer"
+            title="Fermer ce formulaire de contact"
+          > -->
+            <img
+              src="assets/icons/close.svg"
+              alt="fermer"
+              class="fermer"
+              onclick="closeModal()"
+            />
+          <!-- </button> -->
         </header>
         <form method="post" action="#">
           <div>
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" />
+            <label for="firstName">Prénom</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              aria-label="firstName"
+              aria-required="true"
+              aria-invalid="false"
+            />
           </div>
           <div>
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" />
+            <label for="LastName">Nom</label>
+            <input
+              type="text"
+              id="LastName"
+              name="LastName"
+              arria-label="LastName"
+              aria-required="true"
+              aria-invalid="false"
+            />
           </div>
           <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              aria-label="email"
+              aria-required="true"
+              aria-invalid="false"
+            />
           </div>
           <div>
             <label for="message">Message</label>
-            <input type="textarea" id="message" name="message" rows="7" />
+            <input
+              type="textarea"
+              id="message"
+              name="message"
+              rows="5"
+              cols="30"
+              aria-label="message"
+              aria-required="true"
+              aria-invalid="false"
+            />
           </div>
 
-          <button class="contact_button">Envoyer</button>
+          <input
+            type="submit"
+            class="contact_button"
+            value="Envoyer"
+            id="envoi"
+            aria-label="envoyer"
+          />
         </form>
       </div>
     </div>
