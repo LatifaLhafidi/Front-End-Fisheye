@@ -12,20 +12,33 @@ function photographerTemplate(data) {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.alt = "Photo du profil de " + data.name;
+    img.setAttribute("class", "photographer_picture");
+
+    // Div contains contact button
+    const divContact = document.createElement("div");
+    const button = document.querySelector(".contact_button");
+    if (button != null) {
+      divContact.appendChild(button);
+    }
 
     const h2 = document.createElement("h2");
+    h2.setAttribute("class", "photographer_name");
     h2.textContent = name;
 
     const div = document.createElement("div");
     div.setAttribute("class", "infos");
+
     const locationInfos = document.createElement("p");
     locationInfos.setAttribute("class", "photographer_city");
+    locationInfos.textContent = city + ", " + country;
+
     const taglineInfos = document.createElement("p");
     taglineInfos.setAttribute("class", "photographer_tagline");
-    const priceInfos = document.createElement("p");
     taglineInfos.textContent = tagline;
-    locationInfos.textContent = city + ", " + country;
+
+    const priceInfos = document.createElement("p");
     priceInfos.textContent = price + " €" + "/" + "jour";
+    priceInfos.setAttribute("class", "photographer_price");
 
     //affichage des éléments du dom en fonction de l'emplacement choisi
     article.appendChild(link);
@@ -34,53 +47,19 @@ function photographerTemplate(data) {
     div.appendChild(locationInfos);
     div.appendChild(taglineInfos);
     div.appendChild(priceInfos);
+    article.appendChild(divContact);
     article.appendChild(div);
+
     return article;
   }
 
-  function getPhotographerDom() {
-    const header = document.createElement("div");
-    header.setAttribute("class", "photographer_container");
-
-    // Div contains infos
-    const divInfo = document.createElement("div");
-    const h2 = document.createElement("h2");
-    h2.textContent = name;
-    h2.setAttribute("class", "photographer_name");
-    divInfo.appendChild(h2);
-
-    const cityText = document.createElement("p");
-    cityText.textContent = city + ", " + country;
-    cityText.setAttribute("class", "photographer_city");
-    divInfo.appendChild(cityText);
-
-    const taglineText = document.createElement("p");
-    taglineText.textContent = tagline;
-    taglineText.setAttribute("class", "photographer_tagline");
-    divInfo.appendChild(taglineText);
-
-    // Div contains contact button
-    const divContact = document.createElement("div");
-    const button = document.querySelector(".contact_button");
-    divContact.appendChild(button);
-
-    // Div contains picture
-    const divPicture = document.createElement("div");
-    const img = document.createElement("img");
-    img.setAttribute("id", "photographer_picture");
-    img.setAttribute("src", picture);
-    img.setAttribute("alt", name);
-    img.setAttribute("class", "photographer_picture");
-    divPicture.appendChild(img);
-
-    // Add div into header
-    header.appendChild(divInfo);
-    header.appendChild(divContact);
-    header.appendChild(divPicture);
-    return header;
-  }
-
   return {
-    name,  picture,  city, country, tagline, price, getUserCardDOM, getPhotographerDom,
+    name,
+    picture,
+    city,
+    country,
+    tagline,
+    price,
+    getUserCardDOM,
   };
 }

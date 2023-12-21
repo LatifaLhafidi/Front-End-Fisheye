@@ -22,7 +22,7 @@ async function displayDataPhotographer(photographer) {
   // h2.textContent= "latifa";
   const photographHeader = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
-  const photographerDom = photographerModel.getPhotographerDom();
+  const photographerDom = photographerModel.getUserCardDOM();
   photographHeader.appendChild(photographerDom);
 }
 // Récupère les photos du photographe
