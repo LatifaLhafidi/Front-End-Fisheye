@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <script src="https://kit.fontawesome.com/67de550683.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -20,9 +21,7 @@
           Contactez-moi
         </button>
       </div>
-      <div class="afficherMedias"></div>
-    </main>
-    <div
+      <div
       id="contact_modal"
       role="dialog"
      
@@ -32,20 +31,13 @@
       <div class="modal">
         <header>
           <h2 id="modalTitle" class="modalTitle">Contactez-moi</h2>
-
-          <!-- <button
-            type="button"
-            class="fermer"
-            aria-label="Fermer"
-            title="Fermer ce formulaire de contact"
-          > -->
             <img
               src="assets/icons/close.svg"
               alt="fermer"
               class="fermer"
               onclick="closeModal()"
             />
-          <!-- </button> -->
+        
         </header>
         <form method="post" action="#">
           <div>
@@ -105,9 +97,18 @@
         </form>
       </div>
     </div>
+      <div class="afficherMedias" ></div>
+      <div class="lightbox" role="dialog"> 
+        <div class="lightbox_modal" role="dialog"></div>
+      </div>
+      
+      </div>
+    </main>
+    
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/templates/photographer.js"></script>
     <script src="scripts/templates/pictureMedia.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/lightbox.js"></script>
   </body>
 </html>
