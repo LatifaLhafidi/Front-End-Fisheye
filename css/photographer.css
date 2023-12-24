@@ -6,15 +6,14 @@
   background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
-  
 }
-.photograph-header article{
+.photograph-header article {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  padding:30px;
+  padding: 30px;
 }
 
 .photograph-header .photographer_picture {
@@ -30,7 +29,7 @@
   color: #d3573c;
   margin: 0;
 }
-.photograph-header  article p{
+.photograph-header article p {
   margin: 0;
   text-align: left;
 }
@@ -46,10 +45,10 @@
   padding-top: 10px;
   font-size: 18px;
   font-weight: 400;
-  color:gray;
+  color: gray;
   margin: 0;
 }
-.photograph-header .photographer_price{
+.photograph-header .photographer_price {
   display: none;
 }
 
@@ -70,13 +69,15 @@
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 35px;
+  padding: 30px;
   margin: auto;
+  position: fixed;
+  inset: 0;
 }
 
 .modal header {
@@ -89,7 +90,7 @@
 }
 
 .modal header h2 {
-  font-size: 64px;
+  font-size: 50px;
   font-weight: normal;
   text-align: center;
 }
@@ -103,7 +104,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 30px;
 }
 
 form div {
@@ -116,7 +117,37 @@ form div {
 
 form input {
   width: 100%;
-  height: 68px;
+  height: 60px;
   border: none;
   border-radius: 5px;
+}
+/* css encart*/
+.encart {
+  position: fixed;
+  bottom: 0;
+  right: 2%;
+  width: 15%;
+  height: 3.5rem;
+  background-color: #DB8876;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 1%;
+  justify-content: space-between;
+  padding-right: 1%;
+
+}
+.likes {
+  width: 50%;
+  font-size: 24px;
+}
+
+.textEncart {
+  padding: 0 1%;
+  font-weight: bold;
+}
+
+#price {
+  font-weight: bold;
+  font-size: 24px;
 }

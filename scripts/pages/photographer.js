@@ -10,7 +10,7 @@ async function getPhotographer(id) {
   const photographer = data.photographers.find(
     (photographer) => photographer.id == id
   );
-  console.log(photographer);
+ 
 
   return photographer;
 }
@@ -37,22 +37,50 @@ async function getMediaByPhotographerId(id) {
       photographerMedia.push(media);
     }
   }
-  console.log(photographerMedia);
+  
   return photographerMedia;
 }
 async function displayMedia(media) {
+  let totalLikes = 0;
   const picturesSection = document.querySelector(".afficherMedias");
+  const price = document.querySelector("#price");
+  
   media.forEach((picture) => {
-    const mediarModel = MediasTemplate(picture);
-    const MediaCardDOM = mediarModel.getPictursDom();
-    picturesSection.appendChild( MediaCardDOM );
+    const mediasModel = MediasTemplate(picture);
+    const MediaCardDOM = mediasModel.getPictursDom();
+    picturesSection.appendChild( MediaCardDOM ); 
+    price.textContent = mediasModel.price + "€/Jour";
+
+    const encart = document.getElementById("nbLikes");
+    let id = mediasModel.id + "like";
+    totalLikes += mediasModel.likes; 
+    encart.textContent = totalLikes;
+    const likeButton = document.getElementById(id);
+    mediasModel.isLiked=false;
+    likeButton.addEventListener("click", function () {
+      if (mediasModel.isliked) {
+          totalLikes--;
+          mediasModel.isliked = false;
+      } else {
+          totalLikes++;
+          mediasModel.isliked = true;
+      }
+      encart.textContent = totalLikes;
   });
+});
+
 }
+
+   
+
+
+ 
 
 async function init() {
   // Récupère les datas du photographe
   const photographer = await getPhotographer(id);
   displayDataPhotographer(photographer);
+ 
   const medias = await getMediaByPhotographerId(id);
   displayMedia(medias);
 }

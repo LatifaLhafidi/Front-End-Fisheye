@@ -9,29 +9,57 @@ function MediasTemplate(data) {
     article.setAttribute('role', 'dialog'); 
     article.setAttribute("class", "media");
     const section = document.createElement("section");
-
     const p = document.createElement('p');
     p.setAttribute("aria-label", title);
     p.textContent = title;
-
     const pLike =document.createElement("div");
     pLike.setAttribute("id", id);
-    // pLike.setAttribute("aria-label", compteurLike.textContent + "likes");
-  
     const comptLike =document.createElement("span");
     comptLike.setAttribute('role', 'text');
+    comptLike.setAttribute('class', 'cplike');
     comptLike.textContent=likes;
     const likeButton = document.createElement('i');
+    let idButton = id + "like";  
     likeButton.setAttribute('role', 'button');
-    likeButton.setAttribute("class", "fa-regular fa-heart");  
-      // likeButton.setAttribute('aria-label', 'Like');
+    likeButton.setAttribute("id", idButton);  
+    likeButton.setAttribute('aria-label', 'Likes');
+    likeButton.setAttribute("tabindex", "0");
+/*gestion des likes*/   
+    data.isLiked = false;
+    let totalLikes=0;
+    const nbLikes = parseInt(likes)
+    totalLikes += nbLikes;
+
+    if (data.isLiked) {
+      likeButton.setAttribute("class", "fa-solid fa-heart");
+  } else {
+      likeButton.setAttribute("class", "fa-regular fa-heart");
+  }
+  comptLike.textContent = totalLikes+ "";
+
+    likeButton.addEventListener("click", function(){
+      if (data.isLiked) {
+        totalLikes--;
+        data.isLiked = false;
+        likeButton.setAttribute("class", "fa-regular fa-heart");
+    } else {
+        totalLikes++;
+        data.isLiked = true;
+        likeButton.setAttribute("class", "fa-solid fa-heart");
+    }
+
+    comptLike.textContent = totalLikes + " ";
+		
+		});
+   
+
     // likeButton.setAttribute("title", "likes");
     // likeButton.setAttribute("id", idButton);
 
     const lienLightBox = document.createElement("div");
     lienLightBox.setAttribute("class", "lienLightBox");
     lienLightBox.setAttribute("style", "cursor:pointer");
-    lienLightBox.addEventListener("click", openLightbox);
+    lienLightBox.addEventListener("click",  openLightbox);
   
     /* modal*/ 
     
@@ -87,6 +115,8 @@ function MediasTemplate(data) {
     //affichage dans la lightbox
     const container = document.querySelector('.lightbox_modal');
     const slide = document.createElement('div');
+     
+    
     slide.setAttribute("class", "slide");
     slide.setAttribute("aria-label", "image closeup view")
     container.appendChild(slide);
@@ -98,7 +128,10 @@ function MediasTemplate(data) {
         videoLightbox.appendChild(sourceLightbox);
         slide.appendChild(titleLightbox);
     }
+   
     return article;
   }
-  return { title, picture, likes, date, price, getPictursDom };
+
+  return {id, title, picture, likes, date, price, getPictursDom};
+  
 }
