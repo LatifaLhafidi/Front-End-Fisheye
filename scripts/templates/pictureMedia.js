@@ -8,66 +8,54 @@ function MediasTemplate(data) {
     const article = document.createElement("article");
     article.setAttribute('role', 'dialog'); 
     article.setAttribute("class", "media");
+    /* description d'image*/ 
     const section = document.createElement("section");
     const p = document.createElement('p');
     p.setAttribute("aria-label", title);
     p.textContent = title;
     const pLike =document.createElement("div");
-    pLike.setAttribute("id", id);
     const comptLike =document.createElement("span");
     comptLike.setAttribute('role', 'text');
-    comptLike.setAttribute('class', 'cplike');
     comptLike.textContent=likes;
     const likeButton = document.createElement('i');
-    let idButton = id + "like";  
     likeButton.setAttribute('role', 'button');
-    likeButton.setAttribute("id", idButton);  
+    likeButton.setAttribute("id", id);  
     likeButton.setAttribute('aria-label', 'Likes');
     likeButton.setAttribute("tabindex", "0");
-/*gestion des likes*/   
+    likeButton.setAttribute("class", "far fa-heart");
+
+/* gestion des likes */   
     data.isLiked = false;
-    let totalLikes=0;
-    const nbLikes = parseInt(likes)
-    totalLikes += nbLikes;
-
-    if (data.isLiked) {
-      likeButton.setAttribute("class", "fa-solid fa-heart");
-  } else {
-      likeButton.setAttribute("class", "fa-regular fa-heart");
-  }
-  comptLike.textContent = totalLikes+ "";
-
     likeButton.addEventListener("click", function(){
-      if (data.isLiked) {
-        totalLikes--;
-        data.isLiked = false;
-        likeButton.setAttribute("class", "fa-regular fa-heart");
-    } else {
-        totalLikes++;
-        data.isLiked = true;
-        likeButton.setAttribute("class", "fa-solid fa-heart");
-    }
-
-    comptLike.textContent = totalLikes + " ";
-		
+      if ((likeButton.classList.contains("far")) ) {
+        likeButton.classList.remove("far");
+				likeButton.classList.add("fas");
+				likeButton.style.color = "#901C1C";
+				const newLikes = likes + 1;
+				comptLike.textContent = newLikes;
+        comptLike.style.color="red"
+				data.isLiked=true;
+    } else if((likeButton.classList.contains("fas")) ) {
+      likeButton.classList.remove("fas");
+      likeButton.classList.add("far");
+      comptLike.textContent = likes;
+    }	
 		});
    
 
-    // likeButton.setAttribute("title", "likes");
-    // likeButton.setAttribute("id", idButton);
-
+    /*gestion de lightbox*/ 
     const lienLightBox = document.createElement("div");
     lienLightBox.setAttribute("class", "lienLightBox");
     lienLightBox.setAttribute("style", "cursor:pointer");
-    lienLightBox.addEventListener("click",  openLightbox);
+    lienLightBox.addEventListener("click",openLightbox);
   
     /* modal*/ 
     
-    // section.setAttribute('role', 'dialog'); 
     const imgLightbox = document.createElement('img');
     const videoLightbox = document.createElement('video');
     const sourceLightbox = document.createElement('source');
     const titleLightbox = document.createElement('p'); 
+
     // insertion des attributs des éléments de modal lightbox
     videoLightbox.setAttribute("controls", true);
     sourceLightbox.setAttribute("type", "video/mp4");

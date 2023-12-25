@@ -52,11 +52,12 @@ async function displayMedia(media) {
     price.textContent = mediasModel.price + "€/Jour";
 
     const encart = document.getElementById("nbLikes");
-    let id = mediasModel.id + "like";
+    let id = mediasModel.id ;
     totalLikes += mediasModel.likes; 
     encart.textContent = totalLikes;
     const likeButton = document.getElementById(id);
-    mediasModel.isLiked=false;
+    mediasModel.isLiked=false;console.log(mediasModel.isLiked)
+
     likeButton.addEventListener("click", function () {
       if (mediasModel.isliked) {
           totalLikes--;
