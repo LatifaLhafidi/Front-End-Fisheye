@@ -23,3 +23,16 @@ function closeModal() {
 
 
 }
+function sendFormContact() { 
+	const name = document.getElementById("firstName").value;
+	const lastname = document.getElementById("LastName").value;
+	const email = document.getElementById("email").value;
+	const message = document.getElementById("message").value;
+    
+	console.log("Prénom:", name);
+	console.log("Nom:", lastname);
+	console.log("Email:", email);
+	console.log("Message:", message);
+    closeModal();
+    
+}

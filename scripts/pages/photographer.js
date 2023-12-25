@@ -4,7 +4,6 @@ const id = urlParams.get("id");
 
 //recupérer photographer by Id
 async function getPhotographer(id) {
-  console.log(id);
   const response = await fetch("data/photographers.json");
   const data = await response.json();
   const photographer = data.photographers.find(
@@ -17,9 +16,7 @@ async function getPhotographer(id) {
 // Affiche les infos (header) du photographe
 
 async function displayDataPhotographer(photographer) {
-  // console.log(photographer);
-  // const h2 = document.createElement('h2');
-  // h2.textContent= "latifa";
+  
   const photographHeader = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
   const photographerDom = photographerModel.getUserCardDOM();
@@ -56,8 +53,7 @@ async function displayMedia(media) {
     totalLikes += mediasModel.likes; 
     encart.textContent = totalLikes;
     const likeButton = document.getElementById(id);
-    mediasModel.isLiked=false;console.log(mediasModel.isLiked)
-
+    mediasModel.isLiked=false;
     likeButton.addEventListener("click", function () {
       if (mediasModel.isliked) {
           totalLikes--;
