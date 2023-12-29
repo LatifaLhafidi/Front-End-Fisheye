@@ -1,4 +1,4 @@
-function photographerTemplate(data) {
+ function photographerTemplate(data) {
   const { id, name, portrait, tagline, price, country, city } = data;
   const picture = `assets/photographers/${portrait}`;
 
@@ -49,7 +49,6 @@ function photographerTemplate(data) {
     div.appendChild(priceInfos);
     article.appendChild(divContact);
     article.appendChild(div);
-
     return article;
   }
 

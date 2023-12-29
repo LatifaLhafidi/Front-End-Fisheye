@@ -35,4 +35,5 @@ function sendFormContact() {
 	console.log("Message:", message);
     closeModal();
     
+    
 }

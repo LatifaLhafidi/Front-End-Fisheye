@@ -6,7 +6,6 @@ function MediasTemplate(data) {
   function getPictursDom() {
     //création des éléments du dom
     const article = document.createElement("article");
-    article.setAttribute('role', 'dialog'); 
     article.setAttribute("class", "media");
     /* description d'image*/ 
     const section = document.createElement("section");
@@ -20,7 +19,7 @@ function MediasTemplate(data) {
     const likeButton = document.createElement('i');
     likeButton.setAttribute('role', 'button');
     likeButton.setAttribute("id", id);  
-    likeButton.setAttribute('aria-label', 'Likes');
+    likeButton.setAttribute('aria-label', 'likes');
     likeButton.setAttribute("tabindex", "0");
     likeButton.setAttribute("class", "far fa-heart");
 
@@ -33,41 +32,23 @@ function MediasTemplate(data) {
 				likeButton.style.color = "#901C1C";
 				const newLikes = likes + 1;
 				comptLike.textContent = newLikes;
-        comptLike.style.color="red"
 				data.isLiked=true;
     } else if((likeButton.classList.contains("fas")) ) {
       likeButton.classList.remove("fas");
       likeButton.classList.add("far");
       comptLike.textContent = likes;
+      data.isLiked=false;
+
     }	
 		});
    
 
     /*gestion de lightbox*/ 
-    const lienLightBox = document.createElement("div");
+    const lienLightBox = document.createElement("a"); 
     lienLightBox.setAttribute("class", "lienLightBox");
     lienLightBox.setAttribute("style", "cursor:pointer");
-    lienLightBox.addEventListener("click",openLightbox);
+    lienLightBox.setAttribute("onclick", "openLightbox()");
   
-    /* modal*/ 
-    
-    const imgLightbox = document.createElement('img');
-    const videoLightbox = document.createElement('video');
-    const sourceLightbox = document.createElement('source');
-    const titleLightbox = document.createElement('p'); 
-
-    // insertion des attributs des éléments de modal lightbox
-    videoLightbox.setAttribute("controls", true);
-    sourceLightbox.setAttribute("type", "video/mp4");
-    videoLightbox.setAttribute("aria-role", "img");
-    videoLightbox.setAttribute('aria-label', 'title');
-    imgLightbox.setAttribute("src", picture);
-    imgLightbox.setAttribute("alt", title);
-    imgLightbox.setAttribute("aria-role", "Lilac breasted roller");
-    titleLightbox.setAttribute("class", "textLightbox");
-    titleLightbox.setAttribute("aria-label", title);  
-
-
     //affichage des éléments du dom en fonction de l'emplacement choisi
     if (data.image) {
       const img = document.createElement("img");
@@ -100,13 +81,33 @@ function MediasTemplate(data) {
     pLike.appendChild(comptLike);
     pLike.appendChild(likeButton);
 
+
+
+     /* les element de lightbox*/ 
+    
+     const imgLightbox = document.createElement('img');
+     const videoLightbox = document.createElement('video');
+     const sourceLightbox = document.createElement('source');
+     const titleLightbox = document.createElement('p'); 
+ 
+     // insertion des attributs des éléments de modal lightbox
+     videoLightbox.setAttribute("controls", true);
+     sourceLightbox.setAttribute("type", "video/mp4");
+     videoLightbox.setAttribute("aria-role", "img");
+     videoLightbox.setAttribute('aria-label', 'title');
+
+     imgLightbox.setAttribute("src", picture);
+     imgLightbox.setAttribute("alt", title);
+     imgLightbox.setAttribute("aria-role", "Lilac breasted roller");
+     titleLightbox.setAttribute("class", "textLightbox");
+     titleLightbox.setAttribute("aria-label", title);  
     //affichage dans la lightbox
     const container = document.querySelector('.lightbox_modal');
     const slide = document.createElement('div');
      
     
     slide.setAttribute("class", "slide");
-    slide.setAttribute("aria-label", "image closeup view")
+    slide.setAttribute("aria-label", "image closeup view");
     container.appendChild(slide);
     if (data.image) {
         slide.appendChild(imgLightbox);

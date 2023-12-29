@@ -9,14 +9,11 @@ async function getPhotographer(id) {
   const photographer = data.photographers.find(
     (photographer) => photographer.id == id
   );
- 
-
   return photographer;
 }
 // Affiche les infos (header) du photographe
 
-async function displayDataPhotographer(photographer) {
-  
+async function displayDataPhotographer(photographer) { 
   const photographHeader = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
   const photographerDom = photographerModel.getUserCardDOM();
@@ -26,9 +23,7 @@ async function displayDataPhotographer(photographer) {
 async function getMediaByPhotographerId(id) {
   const response = await fetch("data/photographers.json");
   const data = await response.json();
-
   const photographerMedia = [];
-
   for (const media of data.media) {
     if (media.photographerId == id) {
       photographerMedia.push(media);
