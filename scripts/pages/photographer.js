@@ -1,3 +1,4 @@
+import { photographerTemplate } from '../templates/photographer.js';
 // Récupere l'id de l'url
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
@@ -33,17 +34,29 @@ async function getMediaByPhotographerId(id) {
   return photographerMedia;
 }
 async function displayMedia(media) {
-  let totalLikes = 0;
-  const picturesSection = document.querySelector(".afficherMedias");
-  const price = document.querySelector("#price");
-  
+  const picturesSection = document.querySelector(".afficherMedias"); 
+  const container = document.querySelector('.lightbox_modal');
   media.forEach((picture) => {
     const mediasModel = MediasTemplate(picture);
     const MediaCardDOM = mediasModel.getPictursDom();
+    const lightboxCardDOM = mediasModel.creatLightbox();
     picturesSection.appendChild( MediaCardDOM ); 
-    price.textContent = mediasModel.price + "€/Jour";
+    container.appendChild(lightboxCardDOM );
 
-    const encart = document.getElementById("nbLikes");
+  
+});
+
+}
+async function displayEncart(media) {
+  const price = document.querySelector("#price");
+  const encart = document.getElementById("nbLikes");
+ 
+  let totalLikes = 0;
+  media.forEach((picture) => {
+    price.textContent = picture.price + "€/Jour";
+    const mediasModel = MediasTemplate(picture);
+    const MediaCardDOM = mediasModel.getPictursDom();
+    console.log(mediasModel.id)
     let id = mediasModel.id ;
     totalLikes += mediasModel.likes; 
     encart.textContent = totalLikes;
@@ -59,15 +72,12 @@ async function displayMedia(media) {
       }
       encart.textContent = totalLikes;
   });
-});
+  });
+
 
 }
 
-   
-
-
  
-
 async function init() {
   // Récupère les datas du photographe
   const photographer = await getPhotographer(id);
@@ -75,5 +85,7 @@ async function init() {
  
   const medias = await getMediaByPhotographerId(id);
   displayMedia(medias);
+  displayEncart(medias);
+ 
 }
 init();

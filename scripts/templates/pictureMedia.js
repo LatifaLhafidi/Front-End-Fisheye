@@ -81,16 +81,17 @@ function MediasTemplate(data) {
     pLike.appendChild(comptLike);
     pLike.appendChild(likeButton);
 
-
+    return article;
 
      /* les element de lightbox*/ 
-    
-     const imgLightbox = document.createElement('img');
+   
+  }
+  function creatLightbox() {
+      const imgLightbox = document.createElement('img');
      const videoLightbox = document.createElement('video');
      const sourceLightbox = document.createElement('source');
      const titleLightbox = document.createElement('p'); 
- 
-     // insertion des attributs des éléments de modal lightbox
+
      videoLightbox.setAttribute("controls", true);
      sourceLightbox.setAttribute("type", "video/mp4");
      videoLightbox.setAttribute("aria-role", "img");
@@ -102,13 +103,10 @@ function MediasTemplate(data) {
      titleLightbox.setAttribute("class", "textLightbox");
      titleLightbox.setAttribute("aria-label", title);  
     //affichage dans la lightbox
-    const container = document.querySelector('.lightbox_modal');
-    const slide = document.createElement('div');
-     
     
+     const slide = document.createElement('div'); 
     slide.setAttribute("class", "slide");
     slide.setAttribute("aria-label", "image closeup view");
-    container.appendChild(slide);
     if (data.image) {
         slide.appendChild(imgLightbox);
         slide.appendChild(titleLightbox);
@@ -117,10 +115,12 @@ function MediasTemplate(data) {
         videoLightbox.appendChild(sourceLightbox);
         slide.appendChild(titleLightbox);
     }
-   
-    return article;
+    return slide;
+
+
   }
 
-  return {id, title, picture, likes, date, price, getPictursDom};
+
+  return {id, title, picture, likes, date, price, getPictursDom,creatLightbox};
   
 }
