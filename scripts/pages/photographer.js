@@ -33,6 +33,7 @@ async function getMediaByPhotographerId(id) {
   
   return photographerMedia;
 }
+/* afficher les media et le lightbox*/ 
 async function displayMedia(media) {
   const picturesSection = document.querySelector(".afficherMedias"); 
   const container = document.querySelector('.lightbox_modal');
@@ -42,6 +43,7 @@ async function displayMedia(media) {
     const lightboxCardDOM = mediasModel.creatLightbox();
     picturesSection.appendChild( MediaCardDOM ); 
     container.appendChild(lightboxCardDOM );
+    // console.log(mediasModel.price)
 
   
 });
@@ -56,7 +58,6 @@ async function displayEncart(media) {
     price.textContent = picture.price + "€/Jour";
     const mediasModel = MediasTemplate(picture);
     const MediaCardDOM = mediasModel.getPictursDom();
-    console.log(mediasModel.id)
     let id = mediasModel.id ;
     totalLikes += mediasModel.likes; 
     encart.textContent = totalLikes;

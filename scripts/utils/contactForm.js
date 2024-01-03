@@ -33,7 +33,14 @@ function sendFormContact() {
 	console.log("Nom:", lastname);
 	console.log("Email:", email);
 	console.log("Message:", message);
-    closeModal();
+   
     
     
 }
+
+const form = document.querySelector(".contact_form");
+form.addEventListener("submit", function(event) {
+	event.preventDefault();
+	sendFormContact();
+    closeModal();
+});
