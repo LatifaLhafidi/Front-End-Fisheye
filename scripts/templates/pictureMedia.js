@@ -48,7 +48,6 @@ function MediasTemplate(data) {
     lienLightBox.setAttribute("class", "lienLightBox");
     lienLightBox.setAttribute("style", "cursor:pointer");
     lienLightBox.setAttribute("onclick", "openLightbox()");
-  
     //affichage des éléments du dom en fonction de l'emplacement choisi
     if (data.image) {
       const img = document.createElement("img");

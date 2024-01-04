@@ -32,9 +32,7 @@ function sendFormContact() {
 	console.log("Prénom:", name);
 	console.log("Nom:", lastname);
 	console.log("Email:", email);
-	console.log("Message:", message);
-   
-    
+	console.log("Message:", message);    
     
 }
 
