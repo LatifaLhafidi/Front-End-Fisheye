@@ -5,38 +5,37 @@ function openLightbox() {
    
 }
 
-// function next() {
-//     slideIndex = slideIndex + 1;
-//     showSlides(slideIndex);
-// }
-
-// function previous() {
-//     slideIndex = slideIndex - 1;
-//     showSlides(slideIndex);
-// }
-// function closeLightbox(){
-//     const modal = document.querySelector(".lightbox");
-//     modal.style.display = "none";
+function closeLightbox(){
+    const modal = document.querySelector(".lightbox");
+    modal.style.display = "none";
    
-// }
-// let slideIndex = 1;
-// showSlides(slideIndex);
+}
+let slideIndex = 1;
+showSlides(slideIndex);
 
-// function showSlides(n) {
-//     var i;
 
-//     let slides = document.getElementsByClassName("slide");
+function next() {
+    slideIndex = slideIndex + 1;
+    showSlides(slideIndex);
+}
+function previous() {
+    slideIndex = slideIndex - 1;
+    showSlides(slideIndex);
+}
 
-//     if (n > slides.length) {slideIndex = 1}
-//     if (n < 1) {slideIndex = slides.length}
-//     for (i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
+function showSlides(slideIndex) {
+    
+    let slides = document.getElementsByClassName("slide");
 
-//     for (let i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
+    if (slideIndex > slides.length) { slideIndex = 0 }
+    if (slideIndex < 0) { slideIndex = slides.length }
 
-//     slides[slideIndex-1].style.display = "block";
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
 
-// }
+    if (slideIndex - 1 >= 0) {
+        console.log(slideIndex + "-1");
+        slides[slideIndex - 1].style.display = "block";
+    }
+}
