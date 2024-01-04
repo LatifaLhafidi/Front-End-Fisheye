@@ -37,9 +37,9 @@ async function getMediaByPhotographerId(id) {
 async function displayMedia(media) {
   const picturesSection = document.querySelector(".afficherMedias"); 
   const container = document.querySelector('.lightbox_modal');
-  media.forEach((picture) => {
+  media.forEach((picture,index) => {
     const mediasModel = MediasTemplate(picture);
-    const MediaCardDOM = mediasModel.getPictursDom();
+    const MediaCardDOM = mediasModel.getPictursDom(index);
     const lightboxCardDOM = mediasModel.creatLightbox();
     picturesSection.appendChild( MediaCardDOM ); 
     container.appendChild(lightboxCardDOM );

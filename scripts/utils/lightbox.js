@@ -1,8 +1,9 @@
-function openLightbox() {
+function openLightbox(index) {
     const modal = document.querySelector(".lightbox");
     modal.style.display = "block";
+    slideIndex = index ? parseInt(index)+1 : slideIndex;
     showSlides(slideIndex);
-   
+
 }
 
 function closeLightbox(){
@@ -24,7 +25,7 @@ function previous() {
 }
 
 function showSlides(slideIndex) {
-    
+
     let slides = document.getElementsByClassName("slide");
 
     if (slideIndex > slides.length) { slideIndex = 0 }
