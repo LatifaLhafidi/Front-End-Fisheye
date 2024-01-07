@@ -1,8 +1,9 @@
 function openLightbox(index) {
     const modal = document.querySelector(".lightbox");
     modal.style.display = "block";
-    slideIndex = index ? parseInt(index)+1 : slideIndex;
-    showSlides(slideIndex);
+    slideIndex = parseInt(index)+1
+    // console.log(index);
+    showSlides( slideIndex);
 
 }
 
@@ -29,7 +30,7 @@ function showSlides(slideIndex) {
     let slides = document.getElementsByClassName("slide");
 
     if (slideIndex > slides.length) { slideIndex = 0 }
-    if (slideIndex < 0) { slideIndex = slides.length }
+    if (slideIndex < 1) { slideIndex = slides.length }
 
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
