@@ -153,17 +153,6 @@
 }
 
 /* css pour dropdown*/
-/* .form-tri{
-  display: flex;
-  flex-direction: row;
-  height: 10rem;
-  align-items: center;
-  margin-left: 5%;
- 
-}
-.form-tri select{
-  background-color: #901C1C;
-} */
 
 .filter {
   display: flex;
@@ -230,4 +219,4 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+} 
