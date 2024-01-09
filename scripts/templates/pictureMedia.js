@@ -1,4 +1,4 @@
-function MediasTemplate(data) {
+export function MediasTemplate(data) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
   const picture = `./assets/images/${photographerId}/${image}`;
   const mediaVideo = `./assets/images/${photographerId}/${video}`;

@@ -62,19 +62,28 @@
           <option value="date">Date</option>
           <option value="title">Titre</option>
         </select>
-      </form> -->
-    <div class="picturesSection">
-      <div class="tri">
-        <h3>Trier par</h3>
-        <div id="dropdown">
-          <button id="dropdownButton" aria-haspopup="listbox" aria-expanded="false">popularité</button>
-          <ul id="dropdownList" role="listbox" aria-labelledby="dropdownButton">
-            <li role="option" aria-selected="false" data-value="popularité">popularité</li>
-            <li role="option" aria-selected="false" data-value="date">Date</li>
-            <li role="option" aria-selected="false" data-value="title">title</li>
-          </ul>
-        </div>
+      </form> -->  
+      <div class="filter">
+        <span class="filter_title">Trier par</span>
+          <div class="dropdown">
+            <button class="btn_list" type="button" role="button">
+              <span id="current_filter">Popularité</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown_content" aria-hidden="true" role="listbox">
+              <li role="option">
+                <button type="button">Titre</button>
+              </li>
+              <li role="option">
+                <button type="button">Popularité</button>
+              </li>
+              <li role="option">
+                <button type="button">Date</button>
+              </li>
+            </ul>
+          </div>
       </div>
+      <div class="picturesSection">
       <div class="afficherMedias"></div>
       <div class="encart">
         <div class="likes">
@@ -102,7 +111,6 @@
   </main>
 
   <script type="module" src="scripts/pages/photographer.js"></script>
-  <script src="scripts/templates/pictureMedia.js"></script>
   <script src="scripts/utils/contactForm.js"></script>
   <script src="scripts/utils/lightbox.js"></script>
   <script src="scripts/utils/dropdown.js"></script>
