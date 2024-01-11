@@ -32,78 +32,85 @@ async function getMediaByPhotographerId(id) {
       photographerMedia.push(media);
     }
   }
-
   return photographerMedia;
 }
 /* afficher les media et le lightbox*/
-async function displayMedia(media) {
+async function displayMedia(medias) {
+  const price = document.querySelector("#price");
   const picturesSection = document.querySelector(".afficherMedias");
-  const container = document.querySelector(".lightbox_modal");
-  media.forEach((picture, index) => {
+  picturesSection.innerHTML = ""; // Nettoyer le contenu existant
+
+  if (picturesSection) {
+  medias.forEach((picture, index) => {
     const mediasModel = MediasTemplate(picture);
     const MediaCardDOM = mediasModel.getPictursDom(index);
-    const lightboxCardDOM = mediasModel.creatLightbox();
     picturesSection.appendChild(MediaCardDOM);
-    container.appendChild(lightboxCardDOM);
+    price.textContent = picture.price + "€/Jour";
+
+     displayEncart(medias) ;
+     displayLightbox(medias);
     //  console.log(index)
   });
 }
-async function displayEncart(media) {
-  const price = document.querySelector("#price");
-  const encart = document.getElementById("nbLikes");
-
-  let totalLikes = 0;
+}
+async function displayLightbox(media) {
+  const container = document.querySelector(".lightbox_modal");
+  container.innerHTML = ""; // Nettoyer le contenu existant
   media.forEach((picture) => {
-    price.textContent = picture.price + "€/Jour";
     const mediasModel = MediasTemplate(picture);
-    const MediaCardDOM = mediasModel.getPictursDom();
+    const lightboxCardDOM = mediasModel.creatLightbox();
+    container.appendChild(lightboxCardDOM);
+  });
+}
+ function displayEncart(medias) {
+  let totalLikes = 0;
+  medias.forEach((picture) => {
+    const encart = document.getElementById("nbLikes");
+    const mediasModel = MediasTemplate(picture);
     let id = mediasModel.id;
     totalLikes += mediasModel.likes;
     encart.textContent = totalLikes;
-    const likeButton = document.getElementById(id);
     mediasModel.isLiked = false;
+    let likeButton = document.getElementById(id);
+    if(likeButton){
     likeButton.addEventListener("click", function () {
-      if (mediasModel.isliked) {
+      if (mediasModel.isLiked) {
         totalLikes--;
-        mediasModel.isliked = false;
+        mediasModel.isLiked = false;
       } else {
         totalLikes++;
-        mediasModel.isliked = true;
+        mediasModel.isLiked = true;
       }
       encart.textContent = totalLikes;
     });
+  }
   });
-}
-function trieMedia(medias) {
+
+}async function trieMedia(medias) {
   let mediasTries;
-  const allFilters = Array.from( document.querySelectorAll(".dropdown_content li button") );
+  const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
   const currentFilter = document.querySelector("#current_filter");
- 
+
   allFilters.forEach((filter) => {
-    filter.addEventListener("click", () => {  
+    filter.addEventListener("click", () => {
       const tri = currentFilter.textContent;
       mediasTries = "";
       console.log(tri);
-      const container = document.querySelector(".afficherMedias");
-      container.innerHTML = "";
       switch (tri) {
         case "Titre":
-          mediasTries = medias.sort((a, b) => a.title.localeCompare(b.title));
+          mediasTries = medias.slice().sort((a, b) => a.title.localeCompare(b.title));
           displayMedia(mediasTries);
           console.log(mediasTries);
           break;
         case "Date":
-          mediasTries = medias.sort(
-            (a, b) => new Date(a.date) - new Date(b.date)
-          );
+          mediasTries = medias.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
           displayMedia(mediasTries);
-           console.log(mediasTries);
-
+          console.log(mediasTries);
           break;
         case "Popularité":
-          mediasTries = medias.sort((a, b) => a.likes - b.likes);
+          mediasTries = medias.slice().sort((a, b) => a.likes - b.likes);
           displayMedia(mediasTries);
-           console.log(mediasTries);
+          console.log(mediasTries);
           break;
         default:
           displayMedia(medias);
@@ -113,14 +120,13 @@ function trieMedia(medias) {
   });
 }
 
+
 async function init() {
   // Récupère les datas du photographe
   const photographer = await getPhotographer(id);
   displayDataPhotographer(photographer);
-
   const medias = await getMediaByPhotographerId(id);
   displayMedia(medias);
-  displayEncart(medias);
   trieMedia(medias);
 }
 init();

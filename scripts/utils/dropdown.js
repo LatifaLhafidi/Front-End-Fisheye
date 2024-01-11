@@ -1,9 +1,10 @@
     // Ajout d'un listner click sur le filtre pour le tri
 
     const filterMenuButton = document.querySelector(".btn_list");
+    const filterMenu = document.querySelector(".dropdown_content");
+    filterMenuButton.addEventListener("click", dropdown)
 
-    filterMenuButton.addEventListener("click", () => {
-        const filterMenu = document.querySelector(".dropdown_content");
+    function dropdown(){
         const filterButtons = document.querySelectorAll(".dropdown_content button");
         const isExpanded = filterMenuButton.getAttribute("aria-expanded") === "true" || false;
     
@@ -15,13 +16,8 @@
     
         filterMenuButton.setAttribute("aria-expanded", !isExpanded);
         document.querySelector(".fa-chevron-down").classList.toggle("rotate");
-    
-        const newAriaHiddenValue = filterMenu.style.display === "none" ? "true" : "false";
-        filterMenu.setAttribute("aria-hidden", newAriaHiddenValue);
-    
-        const newTabIndexValue = filterMenu.style.display === "none" ? "-1" : "0";
-        filterButtons.forEach(button => button.setAttribute("tabindex", newTabIndexValue));        
-    });
+        
+    }
    
  
 
@@ -49,10 +45,12 @@
                 }
     
                 filterAlreadySelected = filter;
-          
-    
+
+                    dropdown();
                 
             });
+            
+            
         });
     });
 

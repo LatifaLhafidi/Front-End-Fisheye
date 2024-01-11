@@ -14,7 +14,7 @@ function closeModal() {
     const modal = document.getElementById("contact_modal");
     const main = document.getElementById("main");
     const body = document.querySelector("body");
-    const btnOpen = document.querySelector("contact_button");
+    const btnOpen = document.querySelector(".contact_button");
     main.setAttribute('aria-hidden', 'false')
     modal.setAttribute('aria-hidden', 'true')
     modal.style.display = "none";

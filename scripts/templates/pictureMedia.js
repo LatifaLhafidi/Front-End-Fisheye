@@ -102,6 +102,8 @@ export function MediasTemplate(data) {
     imgLightbox.setAttribute("aria-role", "Lilac breasted roller");
     titleLightbox.setAttribute("class", "textLightbox");
     titleLightbox.setAttribute("aria-label", title);
+    titleLightbox.textContent = title;
+
     //affichage dans la lightbox
 
     const slide = document.createElement('div');
@@ -110,6 +112,7 @@ export function MediasTemplate(data) {
     if (data.image) {
       slide.appendChild(imgLightbox);
       slide.appendChild(titleLightbox);
+
     } else {
       slide.appendChild(videoLightbox);
       videoLightbox.appendChild(sourceLightbox);
