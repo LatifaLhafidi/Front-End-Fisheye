@@ -12,7 +12,9 @@
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" />
+    <a href="index.html">
+      <img src="assets/images/logo.png" class="logo" alt="fisheye home page" />
+    </a>
   </header>
   <main id="main" aria-hidden="false">
     <div class="photograph-header">
@@ -62,15 +64,15 @@
             <span id="current_filter">Popularité</span>
             <i class="fas fa-chevron-down"></i>
           </button>
-          <ul class="dropdown_content" aria-hidden="true" role="listbox">
-            <li role="option" data-value="titre">
-              <button type="button">Titre</button>
+          <ul class="dropdown_content" aria-hidden="true" role="listbox" aria-labelledby="btn_list">
+            <li role="option" aria-selected="true">
+              <button >Titre</button>
             </li>
-            <li role="option" data-value="date">
-              <button type="button">Popularité</button>
+            <li role="option"aria-selected="true">
+              <button >Popularité</button>
             </li>
-            <li role="option" data-value="Popularité">
-              <button type="button">Date</button>
+            <li role="option" aria-selected="true">
+              <button >Date</button>
             </li>
           </ul>
         </div>

@@ -17,6 +17,7 @@ export function photographerTemplate(data) {
     // Div contains contact button
     const divContact = document.createElement("div");
     const button = document.querySelector(".contact_button");
+    
     if (button != null) {
       divContact.appendChild(button);
     }

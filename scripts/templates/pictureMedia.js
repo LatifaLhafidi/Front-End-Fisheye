@@ -52,7 +52,8 @@ export function MediasTemplate(data) {
     if (data.image) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
-      img.alt = "Photo du profil de " + data.title;
+      img.setAttribute("alt", title);
+      img.setAttribute("aria-role", "img");
       lienLightBox.appendChild(img);
     } else if (data.video) {
       const video = document.createElement("video");
