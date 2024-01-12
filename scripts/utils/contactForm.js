@@ -2,7 +2,7 @@ function displayModal() {
     const modal = document.getElementById("contact_modal");
     const main = document.getElementById("main");
     const body = document.querySelector("body");
-    const btnFermenture = document.querySelector(".fermer");
+    const btnFermenture = document.querySelector(".close");
     modal.style.display = "block";
     main.setAttribute('aria-hidden', 'true')
     modal.setAttribute('aria-hidden', 'false')

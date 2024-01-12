@@ -41,3 +41,16 @@ function showSlides(slideIndex) {
         slides[slideIndex - 1].style.display = "block";
     }
 }
+document.addEventListener('keyup', e => {
+    switch(e.key) {
+        case 'Escape':
+            closeLightbox();
+            break;
+        case 'ArrowLeft':
+            previous();
+            break;
+        case 'ArrowRight':
+            next();
+            break;
+    };
+});

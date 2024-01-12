@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" >
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/67de550683.js" crossorigin="anonymous"></script>
   <title>Fisheye - photographe</title>
 </head>
-
 <body>
   <header>
     <a href="index.html">
-      <img src="assets/images/logo.png" class="logo" alt="fisheye home page" />
+      <img src="assets/images/logo.png" alt="home "  class="logo">
     </a>
   </header>
   <main id="main" aria-hidden="false">
@@ -26,32 +24,34 @@
       <div class="modal">
         <header>
           <h2 id="modalTitle" class="modalTitle">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="fermer" class="fermer" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="close" class="close" onclick="closeModal()">
         </header>
+        <span class="modal_name"></span>
         <form class="contact_form" method="post" action="#">
           <div>
             <label for="firstName">Prénom</label>
             <input type="text" id="firstName" name="firstName" aria-label="firstName" aria-required="true"
-              aria-invalid="false" />
+              aria-invalid="false"  class="input-form">
           </div>
 
           <div>
             <label for="LastName">Nom</label>
             <input type="text" id="LastName" name="LastName" aria-label="LastName" aria-required="true"
-              aria-invalid="false" />
+              aria-invalid="false"   class="input-form">
           </div>
 
           <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" aria-label="email" aria-required="true" aria-invalid="false" />
+            <input type="email" id="email" name="email" aria-label="email" aria-required="true" aria-invalid="false"
+            class="input-form">
           </div>
 
           <div>
             <label for="message">Message</label>
-            <input type="textarea" id="message" name="message" rows="5" cols="30" aria-label="message"
-              aria-required="true" aria-invalid="false" />
+            <textarea id="message" name="message"  rows="5" cols="50" aria-label="message"
+              aria-required="true" aria-invalid="false" ></textarea>
           </div>
-          <input type="submit" class="contact_button" value="Envoyer" id="envoi" aria-label="envoyer" />
+          <input type="submit" class="contact_button" value="Envoyer" id="envoi" aria-label="envoyer">
         </form>
       </div>
     </div>
@@ -64,11 +64,11 @@
             <span id="current_filter">Popularité</span>
             <i class="fas fa-chevron-down"></i>
           </button>
-          <ul class="dropdown_content" aria-hidden="true" role="listbox" aria-labelledby="btn_list">
+          <ul class="dropdown_content" aria-hidden="true" role="listbox">
             <li role="option" aria-selected="true">
               <button >Titre</button>
             </li>
-            <li role="option"aria-selected="true">
+            <li role="option" aria-selected="true">
               <button >Popularité</button>
             </li>
             <li role="option" aria-selected="true">
@@ -91,19 +91,19 @@
     </div>
 
 
-    <div class="lightbox" role="dialog">
-      <button class="lightbox_close" onclick="closeLightbox()" role="Button">X</button>
+    <div class="lightbox" role="dialog" aria-label="image closeup view">
+      <button class="lightbox_close" onclick="closeLightbox()" role="button">X</button>
       <button class="lightbox_next" onclick="next()" aria-label="Next image" role="link"><i
           class="fa fa-chevron-right"></i></button>
       <button class="lightbox_prev" onclick="previous()" aria-label="Previous image" role="link"><i
           class="fa fa-chevron-left"></i></button>
-      <div class="lightbox_modal" role="dialog">
+      <div class="lightbox_modal">
 
       </div>
 
     </div>
 
-    </div>
+    
   </main>
 
   <script type="module" src="scripts/pages/photographer.js"></script>
@@ -112,5 +112,4 @@
   <script src="scripts/utils/dropdown.js"></script>
 
 </body>
-
 </html>

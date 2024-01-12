@@ -16,6 +16,8 @@ async function getPhotographer(id) {
 // Affiche les infos (header) du photographe
 
 async function displayDataPhotographer(photographer) {
+  const filterMenu = document.querySelector(".modal_name");
+  filterMenu.innerHTML = photographer.name;
   const photographHeader = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
   const photographerDom = photographerModel.getUserCardDOM();
