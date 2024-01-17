@@ -20,7 +20,6 @@ export function MediasTemplate(data) {
     likeButton.setAttribute('role', 'button');
     likeButton.setAttribute("id", id);
     likeButton.setAttribute('aria-label', 'likes');
-    likeButton.setAttribute("tabindex", "0");
     likeButton.setAttribute("class", "far fa-heart");
 
     /* gestion des likes */
@@ -30,8 +29,8 @@ export function MediasTemplate(data) {
         likeButton.classList.remove("far");
         likeButton.classList.add("fas");
         likeButton.style.color = "#901C1C";
-        const newLikes = likes + 1;
-        comptLike.textContent = newLikes;
+        const Newlikes = likes + 1;
+        comptLike.textContent =Newlikes;
         data.isLiked = true;
       } else if ((likeButton.classList.contains("fas"))) {
         likeButton.classList.remove("fas");
@@ -48,6 +47,7 @@ export function MediasTemplate(data) {
     lienLightBox.setAttribute("class", "lienLightBox");
     lienLightBox.setAttribute("style", "cursor:pointer");
     lienLightBox.setAttribute("onclick", `openLightbox(${index})`);
+    lienLightBox.setAttribute("tabindex", "${index}");
     //affichage des éléments du dom en fonction de l'emplacement choisi
     if (data.image) {
       const img = document.createElement("img");

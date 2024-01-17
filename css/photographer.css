@@ -35,7 +35,7 @@
   text-align: left;
 }
 
-.photograph-header.photographer_city {
+.photograph-header .photographer_city {
   font-size: 24px;
   font-weight: 400;
   color: #901c1c;

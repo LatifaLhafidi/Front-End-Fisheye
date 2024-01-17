@@ -20,9 +20,16 @@ function closeModal() {
     modal.style.display = "none";
     body.removeAttribute('class', 'no-scroll');
     btnOpen.focus();
-
-
 }
+// Close modal when escape key is pressed
+document.addEventListener('keyup', e => {
+    const contact_modal = document.getElementById('contact_modal');
+
+    if (e.key === 'Escape') {
+        // Fermer le modal lorsque la touche 'Escape' est pressée
+        closeModal();
+    }
+});
 function sendFormContact() { 
 	const name = document.getElementById("firstName").value;
 	const lastname = document.getElementById("LastName").value;

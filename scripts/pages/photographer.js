@@ -16,11 +16,11 @@ async function getPhotographer(id) {
 // Affiche les infos (header) du photographe
 
 async function displayDataPhotographer(photographer) {
-  const filterMenu = document.querySelector(".modal_name");
-  filterMenu.innerHTML = photographer.name;
+  const price = document.querySelector("#price");
   const photographHeader = document.querySelector(".photograph-header");
   const photographerModel = photographerTemplate(photographer);
   const photographerDom = photographerModel.getUserCardDOM();
+  price.textContent =  photographerModel.price + "€/Jour";
   photographHeader.appendChild(photographerDom);
 }
 
@@ -37,21 +37,16 @@ async function getMediaByPhotographerId(id) {
   return photographerMedia;
 }
 /* afficher les media et le lightbox*/
-async function displayMedia(medias) {
-  const price = document.querySelector("#price");
+async function displayMedias(medias) {
   const picturesSection = document.querySelector(".afficherMedias");
   picturesSection.innerHTML = ""; // Nettoyer le contenu existant
-
   if (picturesSection) {
   medias.forEach((picture, index) => {
     const mediasModel = MediasTemplate(picture);
     const MediaCardDOM = mediasModel.getPictursDom(index);
     picturesSection.appendChild(MediaCardDOM);
-    price.textContent = picture.price + "€/Jour";
-
-     displayEncart(medias) ;
-     displayLightbox(medias);
-    //  console.log(index)
+    CalculTotalLikes(medias);
+    displayLightbox(medias);
   });
 }
 }
@@ -64,63 +59,69 @@ async function displayLightbox(media) {
     container.appendChild(lightboxCardDOM);
   });
 }
- function displayEncart(medias) {
+function CalculTotalLikes(medias) {
+  
+  const encart = document.getElementById("nbLikes");
   let totalLikes = 0;
   medias.forEach((picture) => {
-    const encart = document.getElementById("nbLikes");
     const mediasModel = MediasTemplate(picture);
     let id = mediasModel.id;
     totalLikes += mediasModel.likes;
     encart.textContent = totalLikes;
     mediasModel.isLiked = false;
+
     let likeButton = document.getElementById(id);
-    if(likeButton){
-    likeButton.addEventListener("click", function () {
-      if (mediasModel.isLiked) {
-        totalLikes--;
-        mediasModel.isLiked = false;
-      } else {
-        totalLikes++;
-        mediasModel.isLiked = true;
-      }
-      encart.textContent = totalLikes;
-    });
-  }
+
+    if (likeButton) {
+      likeButton.addEventListener("click", function () {
+        if (mediasModel.isLiked) {
+          totalLikes--;
+          mediasModel.isLiked = false;
+        } else {
+          totalLikes++;
+          mediasModel.isLiked = true;
+        }
+        encart.textContent = totalLikes;
+
+      });
+
+    }
+
   });
 
-}async function trieMedia(medias) {
-  let mediasTries;
+}
+
+async function trieMedia(medias) {
   const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
   const currentFilter = document.querySelector("#current_filter");
 
   allFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
       const tri = currentFilter.textContent;
-      mediasTries = "";
-      console.log(tri);
+      let mediasTries = [];
+
       switch (tri) {
         case "Titre":
           mediasTries = medias.slice().sort((a, b) => a.title.localeCompare(b.title));
-          displayMedia(mediasTries);
-          console.log(mediasTries);
           break;
         case "Date":
           mediasTries = medias.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
-          displayMedia(mediasTries);
-          console.log(mediasTries);
           break;
         case "Popularité":
-          mediasTries = medias.slice().sort((a, b) => a.likes - b.likes);
-          displayMedia(mediasTries);
-          console.log(mediasTries);
+          // Tri par le nombre de likes
+          mediasTries = medias.slice().sort((a, b) => b.likes - a.likes);
           break;
         default:
-          displayMedia(medias);
+          mediasTries = medias;
           break;
       }
+
+      displayMedias(mediasTries);
     });
   });
 }
+
+
 
 
 async function init() {
@@ -128,7 +129,8 @@ async function init() {
   const photographer = await getPhotographer(id);
   displayDataPhotographer(photographer);
   const medias = await getMediaByPhotographerId(id);
-  displayMedia(medias);
+  displayMedias(medias);
   trieMedia(medias);
+ 
 }
 init();

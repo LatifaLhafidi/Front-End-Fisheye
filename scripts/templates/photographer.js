@@ -13,6 +13,7 @@ export function photographerTemplate(data) {
     img.setAttribute("src", picture);
     img.alt = "Photo du profil de " + data.name;
     img.setAttribute("class", "photographer_picture");
+    img.setAttribute("tabindex","3");
 
     // Div contains contact button
     const divContact = document.createElement("div");
@@ -28,7 +29,7 @@ export function photographerTemplate(data) {
 
     const div = document.createElement("div");
     div.setAttribute("class", "infos");
-
+    div.setAttribute("tabindex","2");
     const locationInfos = document.createElement("p");
     locationInfos.setAttribute("class", "photographer_city");
     locationInfos.textContent = city + ", " + country;
