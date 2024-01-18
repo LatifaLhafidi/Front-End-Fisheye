@@ -51,17 +51,17 @@ h1 {
 }
 
 .photographer_section article .photographer_name {
-    margin: 0.5rem 0;
+    margin: 8px 0;
     color: #D3573C;
     font-size: 36px;
 }
 .photographer_section article p{
-	margin: 0.25rem 0;
+	margin: 4px 0;
 	text-align: center;
 }
 .photographer_section article .photographer_city {
     color: #901C1C;
-	font-size: 1.25rem;
+	font-size: 24px;
 }
 .photographer_section article .photographer_price {
 	color: gray;
@@ -171,7 +171,7 @@ h1 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-top: 32px;
 }
 
 .lightbox_modal div img,

@@ -16,8 +16,8 @@ export function MediasTemplate(data) {
     const comptLike = document.createElement("span");
     comptLike.setAttribute('role', 'text');
     comptLike.textContent = likes;
+    const buttonHeart = document.createElement('button');
     const likeButton = document.createElement('i');
-    likeButton.setAttribute('role', 'button');
     likeButton.setAttribute("id", id);
     likeButton.setAttribute('aria-label', 'likes');
     likeButton.setAttribute("class", "far fa-heart");
@@ -30,12 +30,12 @@ export function MediasTemplate(data) {
         likeButton.classList.add("fas");
         likeButton.style.color = "#901C1C";
         const Newlikes = likes + 1;
-        comptLike.textContent =Newlikes;
+        comptLike.innerHTML = Newlikes;
         data.isLiked = true;
       } else if ((likeButton.classList.contains("fas"))) {
         likeButton.classList.remove("fas");
         likeButton.classList.add("far");
-        comptLike.textContent = likes;
+        comptLike.innerHTML = likes;
         data.isLiked = false;
 
       }
@@ -83,48 +83,32 @@ export function MediasTemplate(data) {
 
     return article;
 
-    /* les element de lightbox*/
 
   }
-
   function creatLightbox() {
-    const imgLightbox = document.createElement('img');
-    const videoLightbox = document.createElement('video');
-    const sourceLightbox = document.createElement('source');
-    const titleLightbox = document.createElement('p');
-
-    videoLightbox.setAttribute("controls", true);
-    sourceLightbox.setAttribute("type", "video/mp4");
-    videoLightbox.setAttribute("aria-role", "img");
-    videoLightbox.setAttribute('aria-label', 'title');
-
-    imgLightbox.setAttribute("src", picture);
-    imgLightbox.setAttribute("alt", title);
-    imgLightbox.setAttribute("aria-role", "Lilac breasted roller");
-    titleLightbox.setAttribute("class", "textLightbox");
-    titleLightbox.setAttribute("aria-label", title);
-    titleLightbox.textContent = title;
-
-    //affichage dans la lightbox
-
-    const slide = document.createElement('div');
+    const slide = document.createElement("div");
     slide.setAttribute("class", "slide");
     slide.setAttribute("aria-label", "image closeup view");
+    let lightboxDiv;
+    //affichage dans la lightboxh
+
     if (data.image) {
-      slide.appendChild(imgLightbox);
-      slide.appendChild(titleLightbox);
-
+      lightboxDiv = `
+            <img  src="${picture}" alt="${data.title}">
+             <p>${data.title}</p>
+            `;
     } else {
-      slide.appendChild(videoLightbox);
-      videoLightbox.appendChild(sourceLightbox);
-      slide.appendChild(titleLightbox);
+      lightboxDiv = `
+            <video  controls="true" width="100%" height="auto">
+                <source src="${mediaVideo}"  type="video/mp4">
+            </video>
+            <p>${data.title}</p>
+            `;
     }
+
+    slide.innerHTML = lightboxDiv;
     return slide;
-
-
   }
-
-
   return { id, title, picture, likes, date, price, getPictursDom, creatLightbox };
 
 }

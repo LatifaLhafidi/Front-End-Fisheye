@@ -4,31 +4,36 @@ import { MediasTemplate } from "../templates/pictureMedia.js";
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
-//recupérer photographer by Id
+// Fonction asynchrone pour récupérer les détails d'un photographe par son ID
 async function getPhotographer(id) {
   const response = await fetch("data/photographers.json");
   const data = await response.json();
+   // Cherche le photographe correspondant à l'ID fourni
   const photographer = data.photographers.find(
     (photographer) => photographer.id == id
   );
   return photographer;
 }
-// Affiche les infos (header) du photographe
-
+// Fonction asynchrone pour afficher les informations du photographe dans le header
 async function displayDataPhotographer(photographer) {
-  const price = document.querySelector("#price");
   const photographHeader = document.querySelector(".photograph-header");
+    // Utilise un template pour créer la représentation DOM du photographe
   const photographerModel = photographerTemplate(photographer);
   const photographerDom = photographerModel.getUserCardDOM();
+  const price = document.querySelector("#price");
   price.textContent =  photographerModel.price + "€/Jour";
+  const titleContact = document.querySelector(".modal_name");
+  titleContact.textContent = photographerModel.name;
+  console.log(photographerModel.name);
   photographHeader.appendChild(photographerDom);
 }
 
-// Récupère les photos du photographe
+// Fonction asynchrone pour récupérer les médias d'un photographe par son ID
 async function getMediaByPhotographerId(id) {
   const response = await fetch("data/photographers.json");
   const data = await response.json();
   const photographerMedia = [];
+  
   for (const media of data.media) {
     if (media.photographerId == id) {
       photographerMedia.push(media);
@@ -50,8 +55,11 @@ async function displayMedias(medias) {
   });
 }
 }
+// Fonction asynchrone pour configurer le lightbox
 async function displayLightbox(media) {
   const container = document.querySelector(".lightbox_modal");
+  const slide = document.createElement("div");
+  slide.setAttribute("class", "slide");
   container.innerHTML = ""; // Nettoyer le contenu existant
   media.forEach((picture) => {
     const mediasModel = MediasTemplate(picture);
@@ -59,9 +67,9 @@ async function displayLightbox(media) {
     container.appendChild(lightboxCardDOM);
   });
 }
+// Fonction pour calculer le nombre total de likes pour tous les médias
 function CalculTotalLikes(medias) {
-  
-  const encart = document.getElementById("nbLikes");
+    const encart = document.getElementById("nbLikes");
   let totalLikes = 0;
   medias.forEach((picture) => {
     const mediasModel = MediasTemplate(picture);
@@ -71,7 +79,7 @@ function CalculTotalLikes(medias) {
     mediasModel.isLiked = false;
 
     let likeButton = document.getElementById(id);
-
+    // Ajoute un écouteur d'événements pour mettre à jour les likes lorsqu'un bouton est cliqué
     if (likeButton) {
       likeButton.addEventListener("click", function () {
         if (mediasModel.isLiked) {
@@ -90,7 +98,7 @@ function CalculTotalLikes(medias) {
   });
 
 }
-
+// Fonction asynchrone pour trier les médias en fonction du filtre sélectionné
 async function trieMedia(medias) {
   const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
   const currentFilter = document.querySelector("#current_filter");
@@ -120,10 +128,7 @@ async function trieMedia(medias) {
     });
   });
 }
-
-
-
-
+// Fonction d'initialisation qui récupère les données du photographe et affiche les médias
 async function init() {
   // Récupère les datas du photographe
   const photographer = await getPhotographer(id);
