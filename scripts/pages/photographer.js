@@ -83,19 +83,26 @@ function CalculTotalLikes(medias) {
     if (likeButton) {
       likeButton.addEventListener("click", function () {
         if (mediasModel.isLiked) {
+  
           totalLikes--;
           mediasModel.isLiked = false;
+          
         } else {
+         
           totalLikes++;
           mediasModel.isLiked = true;
+          
         }
         encart.textContent = totalLikes;
+        
 
       });
 
     }
+    
 
   });
+
 
 }
 // Fonction asynchrone pour trier les médias en fonction du filtre sélectionné

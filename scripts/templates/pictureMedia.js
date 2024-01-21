@@ -29,13 +29,14 @@ export function MediasTemplate(data) {
         likeButton.classList.remove("far");
         likeButton.classList.add("fas");
         likeButton.style.color = "#901C1C";
-        const Newlikes = likes + 1;
-        comptLike.innerHTML = Newlikes;
+        data.likes += 1;
+        comptLike.innerHTML = data.likes;
         data.isLiked = true;
       } else if ((likeButton.classList.contains("fas"))) {
         likeButton.classList.remove("fas");
         likeButton.classList.add("far");
-        comptLike.innerHTML = likes;
+        data.likes -= 1;
+        comptLike.innerHTML = data.likes;
         data.isLiked = false;
 
       }

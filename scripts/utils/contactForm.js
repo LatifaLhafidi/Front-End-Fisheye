@@ -8,7 +8,8 @@ function displayModal() {
     modal.setAttribute('aria-hidden', 'false')
     body.setAttribute('class', 'no-scroll')
     btnFermenture.focus()
-}
+      
+    }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
