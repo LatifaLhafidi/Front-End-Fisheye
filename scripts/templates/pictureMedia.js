@@ -7,6 +7,7 @@ export function MediasTemplate(data) {
     //création des éléments du dom
     const article = document.createElement("article");
     article.setAttribute("class", "media");
+    article.setAttribute("tabindex", "${index}");
     /* description d'image*/
     const section = document.createElement("section");
     const p = document.createElement('p');
@@ -18,9 +19,11 @@ export function MediasTemplate(data) {
     comptLike.textContent = likes;
     const buttonHeart = document.createElement('button');
     const likeButton = document.createElement('i');
+    likeButton.setAttribute("style", "cursor:pointer");
     likeButton.setAttribute("id", id);
     likeButton.setAttribute('aria-label', 'likes');
     likeButton.setAttribute("class", "far fa-heart");
+    buttonHeart.appendChild(likeButton);
 
     /* gestion des likes */
     data.isLiked = false;
@@ -51,28 +54,10 @@ export function MediasTemplate(data) {
     lienLightBox.setAttribute("tabindex", "${index}");
     //affichage des éléments du dom en fonction de l'emplacement choisi
     if (data.image) {
-      const img = document.createElement("img");
-      img.setAttribute("src", picture);
-      img.setAttribute("alt", title);
-      img.setAttribute("aria-role", "img");
+     const img =createImagePicture();
       lienLightBox.appendChild(img);
     } else if (data.video) {
-      const video = document.createElement("video");
-      const source = document.createElement("source");
-      const pVideo = document.createElement("p");
-      const lienVideo = document.createElement("a");
-      // accessibilité pour la video
-      source.setAttribute("src", mediaVideo);
-      video.setAttribute("controls", true);
-      video.setAttribute('aria-label', 'title');
-      source.setAttribute("type", "video/mp4");
-      lienVideo.setAttribute("href", mediaVideo);
-      pVideo.textContent =
-        "Votre navigateur ne prend pas en charge les vidéos. Voici, à la place, un ";
-      lienVideo.textContent = "lien vers la vidéo";
-      video.appendChild(source);
-      video.appendChild(pVideo);
-      pVideo.appendChild(lienVideo);
+      const video=createVideoPicture();    
       lienLightBox.appendChild(video);
     }
     article.appendChild(lienLightBox);
@@ -83,31 +68,57 @@ export function MediasTemplate(data) {
     pLike.appendChild(likeButton);
 
     return article;
-
-
   }
+
+   function createImagePicture() {
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", title);
+    img.setAttribute("aria-role", "img");
+    return img;
+
+   }
+   function createVideoPicture(){
+    const video = document.createElement("video");
+    const source = document.createElement("source");
+    const pVideo = document.createElement("p");
+    const lienVideo = document.createElement("a");
+    // accessibilité pour la video
+    source.setAttribute("src", mediaVideo);
+    video.setAttribute("preload","metadata");
+    video.setAttribute('aria-label', 'title');
+    source.setAttribute("type", "video/mp4");
+    lienVideo.setAttribute("href", mediaVideo);
+    pVideo.textContent =
+      "Votre navigateur ne prend pas en charge les vidéos. Voici, à la place, un ";
+    lienVideo.textContent = "lien vers la vidéo";
+    video.appendChild(source);
+    video.appendChild(pVideo);
+    pVideo.appendChild(lienVideo);
+    return video;
+   }
+
+  
   function creatLightbox() {
     const slide = document.createElement("div");
     slide.setAttribute("class", "slide");
     slide.setAttribute("aria-label", "image closeup view");
+    const h3 = document.createElement('h3');
+    h3.setAttribute("aria-label", title);
+    h3.textContent = title;
     let lightboxDiv;
     //affichage dans la lightboxh
 
     if (data.image) {
-      lightboxDiv = `
-            <img  src="${picture}" alt="${data.title}">
-             <p>${data.title}</p>
-            `;
+      lightboxDiv=createImagePicture();
     } else {
-      lightboxDiv = `
-            <video  controls="true" width="100%" height="auto">
-                <source src="${mediaVideo}"  type="video/mp4">
-            </video>
-            <p>${data.title}</p>
-            `;
+      lightboxDiv=createVideoPicture();
+      lightboxDiv.setAttribute("controls", true);
+      
     }
 
-    slide.innerHTML = lightboxDiv;
+    slide.appendChild( lightboxDiv);
+    slide.appendChild(h3);
     return slide;
   }
   return { id, title, picture, likes, date, price, getPictursDom, creatLightbox };

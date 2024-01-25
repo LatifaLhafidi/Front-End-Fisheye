@@ -10,6 +10,7 @@
     
         if (isExpanded) {
             filterMenu.style.display = "none";
+            filterMenuButton.focus()
         } else {
             filterMenu.style.display = "contents";
         }

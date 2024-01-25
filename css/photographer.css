@@ -101,6 +101,7 @@
 }
 
 
+
 .modal header h2 {
   font-size: 64px;
   font-weight: normal;
@@ -248,3 +249,10 @@
   align-items: center;
   justify-content: space-between;
 } 
+main.closed {
+  opacity: 0.4;
+}
+
+main.opened {
+  opacity: 1;
+}

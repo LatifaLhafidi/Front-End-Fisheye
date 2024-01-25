@@ -16,7 +16,7 @@
       <img src="assets/images/logo.png" alt="home " class="logo" alt="Fisheye Home page" />
     </a>
   </header>
-  <main id="main" aria-hidden="false">
+  <main id="main" aria-hidden="false" class="opened">
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()"
         aria-label="cliquer ici pour ouvrir le formulaire de contact" >
@@ -26,18 +26,18 @@
     <div class="filter" >
       <span class="filter_title">Trier par</span>
       <div class="dropdown">
-        <button class="btn_list" type="button" role="button" aria-haspopup="listbox" >
+        <button class="btn_list" type="button" role="button" tabindex="0" aria-haspopup="listbox" >
           <span id="current_filter">Popularité</span>
           <i class="fas fa-chevron-down"></i>
         </button>
-        <ul class="dropdown_content" aria-hidden="true" role="listbox" >
-          <li role="option" aria-selected="true">
+        <ul class="dropdown_content" aria-hidden="true" role="listbox" tabindex="0" >
+          <li  class="menu-item" role="option" aria-selected="true" tabindex="0">
             <button>Titre</button>
           </li>
-          <li role="option" aria-selected="true">
+          <li class="menu-item" role="option" aria-selected="true" tabindex="0">
             <button>Popularité</button>
           </li>
-          <li role="option" aria-selected="true">
+          <li  class="menu-item" role="option" aria-selected="true" tabindex="0">
             <button>Date</button>
           </li>
         </ul>
@@ -73,7 +73,9 @@
     <div class="modal">
       <header>
         <h2 id="modalTitle" class="modalTitle" >Contactez-moi</h2>
-        <img src="assets/icons/close.svg" alt="button pour fermer le modal" class="close" onclick="closeModal()"  />
+        <button class="close" aria-label="Fermer la modale" onclick="closeModal()">
+         <img src="assets/icons/close.svg" alt="button pour fermer le modal" class="close" /> 
+      </button>
       </header>
       <span class="modal_name"></span>
       <form class="contact_form" method="post" action="#">
