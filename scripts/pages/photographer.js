@@ -5,8 +5,10 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
 // Fonction asynchrone pour récupérer les détails d'un photographe par son ID
+//récupérer des données depuis le fichier JSON
 async function getPhotographer(id) {
   const response = await fetch("data/photographers.json");
+  //La variable data contiendra les données JSON extraites de la réponse.
   const data = await response.json();
    // Cherche le photographe correspondant à l'ID fourni
   const photographer = data.photographers.find(
@@ -24,7 +26,6 @@ async function displayDataPhotographer(photographer) {
   price.textContent =  photographerModel.price + "€/Jour";
   const titleContact = document.querySelector(".modal_name");
   titleContact.textContent = photographerModel.name;
-  console.log(photographerModel.name);
   photographHeader.appendChild(photographerDom);
 }
 
@@ -69,7 +70,7 @@ async function displayLightbox(media) {
 }
 // Fonction pour calculer le nombre total de likes pour tous les médias
 function CalculTotalLikes(medias) {
-    const encart = document.getElementById("nbLikes");
+  const encart = document.getElementById("nbLikes");
   let totalLikes = 0;
   medias.forEach((picture) => {
     const mediasModel = MediasTemplate(picture);
@@ -107,12 +108,14 @@ function CalculTotalLikes(medias) {
 }
 // Fonction asynchrone pour trier les médias en fonction du filtre sélectionné
 async function trieMedia(medias) {
+  // allFilters :est un tableau contenant tous les boutons des filtres.
   const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
   const currentFilter = document.querySelector("#current_filter");
 
   allFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
       const tri = currentFilter.textContent;
+      // tab pour stocker les médias triés
       let mediasTries = [];
 
       switch (tri) {

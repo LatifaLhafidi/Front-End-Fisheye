@@ -7,7 +7,6 @@ export function MediasTemplate(data) {
     //création des éléments du dom
     const article = document.createElement("article");
     article.setAttribute("class", "media");
-    article.setAttribute("tabindex", "${index}");
     /* description d'image*/
     const section = document.createElement("section");
     const p = document.createElement('p');
@@ -51,7 +50,6 @@ export function MediasTemplate(data) {
     lienLightBox.setAttribute("class", "lienLightBox");
     lienLightBox.setAttribute("style", "cursor:pointer");
     lienLightBox.setAttribute("onclick", `openLightbox(${index})`);
-    lienLightBox.setAttribute("tabindex", "${index}");
     //affichage des éléments du dom en fonction de l'emplacement choisi
     if (data.image) {
      const img =createImagePicture();
